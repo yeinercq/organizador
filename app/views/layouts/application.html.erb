@@ -9,8 +9,13 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
-
+  <header>
+    <%= render 'shared/navbar' %>
+  </header>
   <body>
+    <%= link_to "Close session", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
     <%= yield %>
   </body>
+  <footer>
+  </footer>
 </html>
