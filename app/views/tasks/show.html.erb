@@ -2,6 +2,17 @@
 
 <%= render @task %>
 
+<div class="notes-container">
+  <div class="notes">
+    <% @task.notes.each do |note| %>
+      <%= render 'tasks/notes/note', note: note %>
+    <% end %>
+    <%= simple_form_for Note.new, url: task_notes_path(task_id: @task.id) do |f| %>
+      <%= f.input :body, label: false, as: :string, placeholer: 'Escriba su nota', input_html: { autocomplete: :off } %>
+    <% end %>
+  </div>
+</div>
+
 <div>
   <%= link_to "Edit this task", edit_task_path(@task) %> |
   <%= link_to "Back to tasks", tasks_path %>
