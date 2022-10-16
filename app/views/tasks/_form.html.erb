@@ -1,5 +1,5 @@
 
-<%= simple_form_for(@task) do |f| %>
+<%= simple_form_for(@task, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -9,6 +9,22 @@
     <%= f.input :due_date %>
     <%= f.association :category %>
   </div>
+
+  <div class="participants">
+    <template data-nested-form-target="template">
+      <%= f.fields_for :participating_users, Participant.new, child_index: 'NEW_RECORD' do |participant_fields| %>
+        <%= render "participating_user_fields", f: participant_fields %>
+      <% end %>
+    </template>
+
+    <%= f.simple_fields_for :participating_users do |g| %>
+      <%= render 'participating_user_fields', f: g %>
+    <% end %>
+  </div>
+
+  <!-- Inserted elements will be injected before that target. -->
+  <div data-nested-form-target="target"></div>
+  <button type="button" data-action="nested-form#add">Add participant</button>
 
   <div class="form-actions">
     <%= f.button :submit %>

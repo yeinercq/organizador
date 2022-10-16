@@ -1,0 +1,8 @@
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+  <%= f.input :user_id, as: :select, collection: User.all - [ current_user ]  %>
+  <%= f.input :role %>
+
+  <button type="button" data-action="nested-form#remove">Remove participant</button>
+
+  <%= f.hidden_field :_destroy %>
+</div>
