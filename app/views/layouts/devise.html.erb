@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Organizador</title>
+    <title>TareasApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,17 +9,17 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
-  <header>
-    <%= render 'layouts/navbar' %>
-  </header>
+
   <body>
-    <div class="container mt-4 pb-4">
+    <div class="container">
       <div class="main-flash-messages">
         <%= render 'layouts/messages' %>
       </div>
-      <%= yield %>
+    </div>
+    <div class="fullscreen">
+      <div class="container">
+        <%= yield %>
+      </div>
     </div>
   </body>
-  <footer>
-  </footer>
 </html>

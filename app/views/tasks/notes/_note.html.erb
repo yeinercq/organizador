@@ -1,4 +1,14 @@
-<p><%= note.body %></p>
-<p><%= time_ago_in_words note.created_at %></p>
-<p><%= note.user.email %></p>
-<hr>
+<div class="avatar">
+  <%= image_tag "https://robohash.org/#{Digest::MD5.hexdigest(note.user.email)}?gravatar=hashed" %>
+</div>
+<div class="note">
+  <div class="past-time">
+    <%= time_ago_in_words note.created_at %>
+  </div>
+  <div class="user">
+    <%= note.user.email %>
+  </div>
+  <div class="content">
+    <%= note.body %>
+  </div>
+</div>

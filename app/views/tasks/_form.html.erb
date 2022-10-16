@@ -1,32 +1,40 @@
-
-<%= simple_form_for(@task, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |f| %>
+<%= simple_form_for(@task, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } ) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :due_date %>
-    <%= f.association :category %>
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.input :name, label: "Nombre" %>
+      </div>
+      <div class="col-ms-3">
+        <%= f.input :due_date, as: :string, input_html: { type: :date }, label: "Fecha de vencimiento" %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.input :category_id, label: "Categoria", as: :select, collection: Category.all %>
+      </div>
+      <div class="col-sm-12">
+        <%= f.input :description %>
+      </div>
+    </div>
   </div>
-
+  <br>
   <div class="participants">
     <template data-nested-form-target="template">
-      <%= f.fields_for :participating_users, Participant.new, child_index: 'NEW_RECORD' do |participant_fields| %>
-        <%= render "participating_user_fields", f: participant_fields %>
+      <%= f.simple_fields_for :participating_users, Participant.new, child_index: 'NEW_RECORD' do |ff| %>
+        <%= render 'participating_user_fields', f: ff %>
       <% end %>
     </template>
 
-    <%= f.simple_fields_for :participating_users do |g| %>
-      <%= render 'participating_user_fields', f: g %>
+    <%= f.simple_fields_for :participating_users do |ff| %>
+      <%= render 'participating_user_fields', f: ff %>
     <% end %>
+
+    <div data-nested-form-target="target"></div>
+    <button type="button" data-action="nested-form#add" class="btn btn-info float-right">Agregar participante</button>
   </div>
-
-  <!-- Inserted elements will be injected before that target. -->
-  <div data-nested-form-target="target"></div>
-  <button type="button" data-action="nested-form#add">Add participant</button>
-
+  <br>
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn btn-info' %>
   </div>
 <% end %>

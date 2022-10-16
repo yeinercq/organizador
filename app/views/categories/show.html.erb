@@ -1,10 +1,16 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @category %>
-
-<div>
-  <%= link_to "Edit this category", edit_category_path(@category) %> |
-  <%= link_to "Back to categories", categories_path %>
-
-  <%= button_to "Destroy this category", @category, method: :delete %>
+<div class="category show-page">
+  <div class="card">
+    <div class="card-body">
+      <p>
+        <b>Nombre</b>
+        <%= @category.name %>
+      </p>
+      <p>
+        <b>Descripcion:</b>
+        <%= @category.description %>
+      </p>
+      <%= link_to t('common.edit'), edit_category_path(@category), class: 'btn-interaction' %> |
+      <%= link_to t('common.back'), categories_path, class: 'btn-interaction' %>
+    </div>
+  </div>
 </div>

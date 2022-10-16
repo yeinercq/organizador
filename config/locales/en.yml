@@ -3,15 +3,19 @@ en:
   activerecord:
     models:
       category:
-        one: Categoría
-        other: Categorías
+        one: Category
+        other: Categories
   categories:
     form:
       description: Description
       name: Name
-    new_category: Nueva Categoría
+    new_category: New category
   common:
-    back: Atrás
+    are_you_sure: Are you sure
+    back: Back
+    destroy: Destroy
+    edit: Edit
+    show: Show
   hello: Hello world
   task:
     errors:
