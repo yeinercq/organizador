@@ -16,7 +16,7 @@ class Task < ApplicationRecord
   belongs_to :category
   belongs_to :owner, class_name: 'User'
   has_many :participating_users, class_name: 'Participant'
-  has_many :participants, through: :participating_users, source: :user
+  has_many :participants, through: :participating_users, source: :user, dependent: :destroy
   has_many :notes
 
   accepts_nested_attributes_for :participating_users, reject_if: :all_blank, allow_destroy: true
