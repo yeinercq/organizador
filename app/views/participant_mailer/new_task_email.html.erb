@@ -1,16 +1,16 @@
 <h1>
-  Hola <%= @user.email %>, tienes una nueva tarea
+  Hola <%= @user.email %>, tienes una nueva tarea.
 </h1>
-
+<br>
 <p>
-  <b>Nombre <%= @task.name %></b>
+  <b>Nombre: <%= @task.name %>.</b>
 </p>
 <p>
-  <b>Descripcion <%= @task.description %></b>
+  <b>Descripción: <%= @task.description %>.</b>
 </p>
 <p>
-  <b>Categoria <%= @task.category %></b>
+  <b>Categoría: <%= @task.category.name %>.</b>
 </p>
 <p>
-  <b>Enlace <%= link_to @task.code, @task %></b>
+  <b>Enlace: <%= link_to @task.code, @task %>.</b>
 </p>
