@@ -34,6 +34,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods #importa metodos para factory bot
   config.include Warden::Test::Helpers # importa helpests para inicio de sesion con devise
   config.include Devise::Test::ControllerHelpers, type: 'controller' # importa helpests para inicio de sesion con devise
+  config.include Devise::Test::IntegrationHelpers, type: 'request' # importa helpests para inicio de sesion con devise
 
   config.before(:suite) do # limpia bases de datos en test
     DatabaseCleaner.strategy = :transaction
