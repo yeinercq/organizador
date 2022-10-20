@@ -22,16 +22,53 @@ RSpec.describe Task, type: :model do
 
   describe '#save' do
 
-    it "is persisted" do
-      expect(task.save).to eq true
+    context 'with params from scratch' do
+
+      let(:owner) { create :user }
+      let(:category) { create :category }
+      let(:participant_1) { build :participant, :responsible }
+      let(:participant_2) { build :participant, :follower }
+
+      subject(:task) do
+        described_class.new(
+          name: 'Tarea',
+          description: 'Desc',
+          due_date: Time.now + 5.days,
+          category: category,
+          owner: owner,
+          participating_users: [ participant_1, participant_2 ]
+        )
+      end
+      it { should be_valid }
+
+      context 'after save' do
+        before(:each) { task.save }
+        it { should be_persisted }
+
+        it 'has a computed code' do
+          expect(task.code).to be_present
+        end
+      end
+
+      context 'with due_date in past' do
+        subject { task.tap { |t| t.due_date = Date.today - 1.day } } # modifica la due_date de task
+        it { is_expected.to_not be_valid }
+      end
     end
 
-    context 'after save' do
-      before(:each) { task.save }
-      it 'has all associatd participants' do
-        expect(task.participating_users.count).to eq participants_count
-        expect(Participant.count).to eq participants_count
+    context 'with params from FactoryBot' do
+      it "is persisted" do
+        expect(task.save).to eq true
       end
+
+      context 'after save' do
+        before(:each) { task.save }
+        it 'has all associated participants' do
+          expect(task.participating_users.count).to eq participants_count
+          expect(Participant.count).to eq participants_count
+        end
+      end
+
     end
   end
 end
