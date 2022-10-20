@@ -33,7 +33,6 @@ gem "simple_form"
 gem "rails-i18n"
 gem "devise"
 gem "cancancan"
-gem "faker"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
@@ -59,6 +58,7 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "faker"
   gem "pry"
   gem "pry-doc"
   gem "rspec-rails"
@@ -80,4 +80,5 @@ end
 group :test do
   gem "database_cleaner-active_record"
   gem "capybara"
+  gem "shoulda-matchers", "~> 5.0"
 end

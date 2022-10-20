@@ -34,6 +34,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods #importa metodos para factory bot
   config.include Warden::Test::Helpers # importa helpests para inicio de sesion con devise
   config.include Devise::Test::ControllerHelpers, type: 'controller' # importa helpests para inicio de sesion con devise
+
   config.before(:suite) do # limpia bases de datos en test
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
@@ -44,6 +45,14 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  Shoulda::Matchers.configure do |config|
+    config.integrate do |with|
+      with.test_framework :rspec
+      with.library :rails
+    end
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
