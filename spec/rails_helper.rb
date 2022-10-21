@@ -35,6 +35,7 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers # importa helpests para inicio de sesion con devise
   config.include Devise::Test::ControllerHelpers, type: 'controller' # importa helpests para inicio de sesion con devise
   config.include Devise::Test::IntegrationHelpers, type: 'request' # importa helpests para inicio de sesion con devise
+  config.include Devise::Test::IntegrationHelpers, type: 'system' # importa helpests para inicio de sesion con devise
 
   config.before(:suite) do # limpia bases de datos en test
     DatabaseCleaner.strategy = :transaction
@@ -45,6 +46,13 @@ RSpec.configure do |config|
     DatabaseCleaner.cleaning do
       example.run
     end
+  end
+
+  config.before(:each, type: :system) do
+    driven_by(:rack_test)
+  end
+  config.before(:each, type: :system, js: true) do
+    driven_by(:selenium_chrome_headless)
   end
 
   Shoulda::Matchers.configure do |config|
