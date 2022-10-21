@@ -1,4 +1,4 @@
-class Tasks::SendEmaiJob
+class Tasks::SendEmailJob
   include SuckerPunch::Job
 
   def perform(task_id)
