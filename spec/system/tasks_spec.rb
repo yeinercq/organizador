@@ -29,7 +29,6 @@ RSpec.describe "Tasks", type: :system do
       end
       click_button('Crear Task')
       expect(page).to have_content("Task was successfully created.")
-
     end
   end
 end
