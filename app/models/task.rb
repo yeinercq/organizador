@@ -41,6 +41,6 @@ class Task < ApplicationRecord
 
   def sent_task_email
     return if Rails.env.test?
-    Tasks::SendEmail.new.call(self)
+    Tasks::SendEmaiJob.perform_async(self.id)
   end
 end
