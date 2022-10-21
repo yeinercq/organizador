@@ -13,6 +13,8 @@
 #  code        :string
 #
 class Task < ApplicationRecord
+  include AASM
+
   belongs_to :category
   belongs_to :owner, class_name: 'User'
   has_many :participating_users, class_name: 'Participant'
@@ -29,6 +31,20 @@ class Task < ApplicationRecord
   validates :name, uniqueness: { case_sensitive: false }
   validate :due_date_validation
 
+  aasm column: :status do
+    state :pending, initial: true
+    state :in_process, :finished
+
+    event :start do
+      transitions from: :pending, to: :in_process
+    end
+
+    event :finish do
+      transitions from: :in_process, to: :finished
+    end
+    
+  end
+
   def due_date_validation
     return if due_date.blank?
     return if due_date > Date.today
@@ -41,6 +57,6 @@ class Task < ApplicationRecord
 
   def sent_task_email
     return if Rails.env.test?
-    Tasks::SendEmaiJob.perform_async(self.id)
+    Tasks::SendEmailJob.perform_async(self.id)
   end
 end
