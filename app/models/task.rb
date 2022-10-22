@@ -11,6 +11,8 @@
 #  updated_at  :datetime         not null
 #  owner_id    :bigint           not null
 #  code        :string
+#  status      :string
+#  transitions :hstore           is an Array
 #
 class Task < ApplicationRecord
   include AASM
@@ -35,6 +37,8 @@ class Task < ApplicationRecord
     state :pending, initial: true
     state :in_process, :finished
 
+    after_all_transitions :audit_status_change
+
     event :start do
       transitions from: :pending, to: :in_process
     end
@@ -42,7 +46,18 @@ class Task < ApplicationRecord
     event :finish do
       transitions from: :in_process, to: :finished
     end
-    
+
+  end
+
+  def audit_status_change
+    transitions.push(
+      {
+        from_state: aasm.from_state,
+        to_state: aasm.to_state,
+        current_event: aasm.current_event,
+        timestamp: Time.zone.now
+      }
+    )
   end
 
   def due_date_validation
