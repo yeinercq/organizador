@@ -16,6 +16,8 @@
               <th>Nombre</th>
               <th>Categoria</th>
               <th>Creador</th>
+              <th>Estado</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -24,6 +26,19 @@
               <td><%= @task.name %></td>
               <td><%= @task.category.name %></td>
               <td><%= @task.owner.email %></td>
+              <td class="task-status"><%= @task.status %></td>
+              <td>
+                <div class="dropdown">
+                  <a class="dropdown-toggle" id="taskMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </a>
+                  <div aria-labelledby="taskMenu" class="dropdown-menu">
+                    <% available_events_for(@task).each do |event| %>
+                      <%= link_to event, trigger_task_path(@task, event: event), remote: true, data: { turbo_method: :patch, turbo_confirm: t('common.are_you_sure')}, class: 'dropdown-item' %>
+                    <% end %>
+                  </div>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
