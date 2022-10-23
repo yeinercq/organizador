@@ -32,6 +32,23 @@
 						.task-dates {
 							font-size: small;
 						}
+						.task-status {
+							// background-color: #28a745;
+							color: white;
+							padding: 5px 15px;
+							font-size: small;
+							border-radius: 15px;
+							margin-left: 5px;
+							&.task-status--pending {
+								background-color: #dc3545;
+							}
+							&.task-status--in_process {
+								background-color: #ffc107;
+							}
+							&.task-status--finished {
+								background-color: #007bff;
+							}
+						}
 					}
 				}
 
