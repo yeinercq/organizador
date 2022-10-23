@@ -47,4 +47,22 @@ RSpec.describe "Tasks", type: :request do
 
     end
   end
+
+  describe "PATCH /task/:id/trigger" do
+    let(:participants_count) { 4 }
+    let(:event) { 'start' }
+    subject(:task) do
+      build(
+        :task_with_participants,
+        owner: user,
+        participants_count: participants_count
+      )
+    end
+
+    it "updates the state" do
+      task.save
+      patch trigger_task_path(task, event: event)
+      expect(task.reload.status).to eq "in_process"
+    end
+  end
 end
