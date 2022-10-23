@@ -67,7 +67,7 @@ class Task < ApplicationRecord
   end
 
   def generate_code
-    self.code = "#{owner_id}#{Time.now.to_i.to_s(36)}#{SecureRandom.hex(8)}"
+    Tasks::GenerateCode.new.call(self)
   end
 
   def sent_task_email
