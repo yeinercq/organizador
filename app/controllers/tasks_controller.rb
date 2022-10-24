@@ -8,7 +8,7 @@ class TasksController < ApplicationController
       'owner_id = ? OR participants.user_id = ?',
       current_user.id,
       current_user.id
-    ).distinct
+    ).distinct.order(:created_at)
   end
 
   # GET /tasks/1 or /tasks/1.json

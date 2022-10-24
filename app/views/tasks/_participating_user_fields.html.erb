@@ -8,11 +8,9 @@
     <div class="col-4">
       <%= f.input :role, label: "Rol", as: :select, collection: Participant.roles, value_method: -> (r) { r[0] } %>
     </div>
-    <div class="col-4 text-left">
-      <div class="mt-2">
-        <button type="button" data-action="nested-form#remove" class="btn btn-warning btn-sm btn-flat mt-4">Eliminar participante</button>
-        <%= f.input :_destroy, as: :hidden %>
-      </div>
+    <div class="col-4">
+      <button type="button" data-action="nested-form#remove" class="btn btn-warning btn-sm btn-flat mt-4">Eliminar participante</button>
+      <%= f.input :_destroy, as: :hidden %>
     </div>
   </div>
   <br>

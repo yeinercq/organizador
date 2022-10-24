@@ -7,15 +7,15 @@
       <div class="col-sm-6">
         <%= f.input :name, label: "Nombre" %>
       </div>
-      <div class="col-ms-3">
+      <div class="col-sm-3">
         <%= f.input :due_date, as: :string, input_html: { type: :date }, label: "Fecha de vencimiento" %>
       </div>
       <div class="col-sm-3">
         <%= f.input :category_id, label: "Categoria", as: :select, collection: Category.all %>
       </div>
-      <div class="col-sm-12">
-        <%= f.input :description %>
-      </div>
+    </div>
+    <div class="col-sm-12">
+      <%= f.input :description %>
     </div>
   </div>
   <br>
