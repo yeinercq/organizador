@@ -1,6 +1,6 @@
-# fly.toml file generated for spring-sun-2482 on 2022-10-17T14:43:53-05:00
+# fly.toml file generated for morning-sound-3596 on 2022-10-24T16:18:03-05:00
 
-app = "spring-sun-2482"
+app = "morning-sound-3596"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
