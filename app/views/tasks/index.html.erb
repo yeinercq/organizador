@@ -18,6 +18,9 @@
                 <span class="task-status--<%= task.status %> task-status">
                   <%= task.status %>
                 </span>
+                <span class="task-files">
+                  <%= task.files.count %> <%= "archivo".pluralize(task.files.count) %>
+                </span>
               </div>
               <div class="task-description">
                 <%= task.description %>

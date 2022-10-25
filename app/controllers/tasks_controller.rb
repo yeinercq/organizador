@@ -80,6 +80,7 @@ class TasksController < ApplicationController
         :description,
         :due_date,
         :category_id,
+        files: [],
         participating_users_attributes: [
           :id,
           :user_id,

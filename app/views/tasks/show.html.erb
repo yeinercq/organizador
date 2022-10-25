@@ -69,6 +69,18 @@
       </div>
       <%= link_to t('common.edit'), edit_task_path(@task) %>  |
       <%= link_to t('common.back'), tasks_path %>
+      <br>
+      <br>
+      <div class="files">
+        Archivos:
+        <ul>
+          <% @task.files.each do |file| %>
+            <li>
+              <%= link_to file.filename, file, target: :blank %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
   <h2 class="mt-2 mb-2">Notas</h2>

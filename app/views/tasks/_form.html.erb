@@ -34,6 +34,15 @@
     <button type="button" data-action="nested-form#add" class="btn btn-info float-right">Agregar participante</button>
   </div>
   <br>
+
+  <hr>
+  <div class="files">
+    <label for="formFile" class="text form-label">Agregar archivos</label>
+    <%= f.file_field :files, multiple: true, direct_upload: true, class: 'form-control'%>
+  </div>
+
+  <br>
+
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-info' %>
   </div>
