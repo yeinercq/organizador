@@ -36,4 +36,4 @@ You can create a task and add a participant in nested forms.
 
 ## Try it!
 
-Please make sure to test it at [fly.io](https://spring-sun-2482.fly.dev/)
+Please make sure to test it at [fly.io](https://morning-sound-3596.fly.dev)
